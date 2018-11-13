@@ -41,15 +41,9 @@ export default class PutMap {
   }
 
   convert(position, piece) {
-    var arr = [];
+    var i;
+    var additionalArr = [0,1];
 
-
-    // INFO: この式は非常にきれいだが、`[1,0,1]` のときに破綻するし、`[0,1]`でも破綻する
-    arrOfX = [0,1];
-    for (var x = positionX; x <= positionX + arrOfX.length; x++) {
-      this._map[y][x]++;
-    }
-
-
+    arr = arr.merge(i, additionalArr);
   }
 }

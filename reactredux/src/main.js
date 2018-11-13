@@ -1,3 +1,4 @@
+import './object/Array';
 import PutMap from './object/PutMap';
 import PieceProvider from './object/PieceProvider';
 (function main() {
