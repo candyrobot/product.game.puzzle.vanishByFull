@@ -37,6 +37,8 @@ export default class PutMap {
   checkAndAdd(postion, piece) {
     if(this.isOverBeyondMap(postion, piece))
       console.warn('over beyond the map!');
+    else if(this.isAlreadyExist(postion, piece))
+      console.warn('is already exist!');
     else
       this.add(postion, piece);
   }
@@ -50,6 +52,20 @@ export default class PutMap {
   isOverBeyondMap(position, piece) {
     return this._map.length < position.y + piece._map.length || this._map.some((mapX, i)=> {
       return piece._map[i-position.y] && mapX.length < position.x + piece._map[i-position.y].length;
+    });
+  }
+
+  /**
+   * [isAlreadyExist description]
+   * @param  {[type]}  position [description]
+   * @param  {[type]}  piece    [description]
+   * @return {Boolean}          [description]
+   */
+  isAlreadyExist(position, piece) {
+    return this._map.some((mapX, y)=> {
+      return mapX.some((val, x)=> {
+        return piece._map[y-position.y] && piece._map[y-position.y][x-position.x] && val + piece._map[y-position.y][x-position.x] > 1;
+      });
     });
   }
 }
