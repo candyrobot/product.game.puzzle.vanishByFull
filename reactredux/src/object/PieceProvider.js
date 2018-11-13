@@ -3,67 +3,77 @@ export default class PieceProvider {
   constructor() {
     this._pieces = [
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1],
           [1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1],
           [1,0],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1],
           [0,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [0,1],
           [1,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,0],
           [1,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1],
           [1,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1],
           [1],
@@ -71,7 +81,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1],
           [1,0,0],
@@ -79,7 +90,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1],
           [0,0,1],
@@ -87,7 +99,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [0,0,1],
           [0,0,1],
@@ -95,7 +108,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,0,0],
           [1,0,0],
@@ -103,7 +117,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1],
           [1,1,1],
@@ -111,13 +126,15 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1,1],
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1],
           [1],
@@ -126,7 +143,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1,1],
           [1,0,0,0],
@@ -135,7 +153,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1,1],
           [0,0,0,1],
@@ -144,7 +163,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [0,0,0,1],
           [0,0,0,1],
@@ -153,7 +173,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,0,0,0],
           [1,0,0,0],
@@ -162,7 +183,8 @@ export default class PieceProvider {
         ]
       },
       {
-        shapeMap:
+        show: this.show,
+        _map:
         [
           [1,1,1,1],
           [1,1,1,1],

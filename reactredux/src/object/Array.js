@@ -8,7 +8,7 @@
  *
  * INFO: .map関数でやりたかったが値が特殊値`empty`の場合はmapのコールバックが呼ばれないorz
  */
-Array.prototype.merge=function(X, arr, fn = function(val1, val2) { return val2 }) {
+Array.prototype.merge = function(X, arr, fn = function(val1, val2) { return val2 }) {
   var newArr = [];
   var newArrLength = Math.max(X + arr.length, this.length);
   for (var i = 0; i < newArrLength; i++) {
@@ -16,16 +16,21 @@ Array.prototype.merge=function(X, arr, fn = function(val1, val2) { return val2 }
     if(i<X) {
       newArr[i] = val;
     }
-    else if(
-      undefined !== this[i] && undefined !== arr[i-X]
-      // i>=X && i<this.length
-    ) {
-      console.log(undefined !== this[i] && undefined !== arr[i-X]);
-      newArr[i] = fn(val, arr[i-X]);
+    else if(undefined !== this[i] && undefined !== arr[i-X]) {
+      newArr[i] = fn(val, arr[i-X], i);
     }
     else {
-      newArr[i] = arr[i-X];
+      newArr[i] = undefined !== arr[i-X] ? arr[i-X] : this[i];
     }
   }
   return newArr;
-}
+};
+
+Array.prototype.log = function(strName) {
+  var str = strName + '\n';
+  this.map((arr)=> {
+    str += JSON.stringify(arr) + "\n";
+  });
+  console.log(str);
+};
+

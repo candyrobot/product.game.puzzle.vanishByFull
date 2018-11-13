@@ -15,35 +15,17 @@ export default class PutMap {
     ];
   }
 
-  show() {
-    var str='';
-    this._map.map((arr)=> {
-      str += JSON.stringify(arr) + "\n";
-    });
-    console.log(str);
-  }
-
   /**
-   * @param {[type]}
-   * @param {[type]}
+   * @param {object}
+   * @param {object}
    */
   add(position, piece) {
-    var additionalMap = convert(position, piece);
-    this._map.map((arrOfX)=> {
-      arrOfX.map(()=> {
-        return
-      });
+    this._map = this._map.merge(position.y, piece._map, function(val1, val2) {
+      return val1.merge(position.x, val2, (val1, val2)=> val1 + val2);
     });
     // or
-    // piece.shapeMap().map((arrOfX)=> {
+    // piece._map().map((arrOfX)=> {
     //   this._map[y][x]++;
     // });
-  }
-
-  convert(position, piece) {
-    var i;
-    var additionalArr = [0,1];
-
-    arr = arr.merge(i, additionalArr);
   }
 }
