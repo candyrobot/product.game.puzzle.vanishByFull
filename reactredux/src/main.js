@@ -4,28 +4,17 @@ import PieceProvider from './object/PieceProvider';
 (function main() {
   const pieceProvider = new PieceProvider();
   var piece = null;
-  var postion = { x: 0, y: 0 };
   var map = new PutMap();
   window.map = map;
 
-
-  piece = pieceProvider.random();
-  console.log(postion);
-  console.log(piece._map.stringify());
-  console.log(map._map.stringify());
-  map.checkAndAdd(postion, piece);
-
-  piece = pieceProvider.random();
-  console.log(postion);
-  console.log(piece._map.stringify());
-  console.log(map._map.stringify());
-  map.checkAndAdd(postion, piece);
-
-  piece = pieceProvider.random();
-  console.log(postion);
-  console.log(piece._map.stringify());
-  console.log(map._map.stringify());
-  map.checkAndAdd(postion, piece);
+  for(var i=0; i<100; i++) {
+    var postion = { x: Math.round(Math.random() * 10), y: Math.round(Math.random() * 10) };
+    piece = pieceProvider.random();
+    console.log(postion);
+    console.log(piece._map.stringify());
+    console.log(map._map.stringify());
+    map.checkAndAdd(postion, piece);
+  }
 
   console.log(map._map.stringify());
 })();
