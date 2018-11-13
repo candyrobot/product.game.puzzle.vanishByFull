@@ -19,7 +19,7 @@ export default class PutMap {
    * @param {object}
    * @param {object}
    */
-  add(position, map) {
+  add(map, position = { x:0, y:0 }) {
     this._map = this._map.merge(position.y, map, function(val1, val2) {
       return val1.merge(position.x, val2, (val1, val2)=> val1 + val2);
     });
@@ -29,7 +29,7 @@ export default class PutMap {
     // });
   }
 
-  subtract(position, map) {
+  subtract(map, position = { x:0, y:0 }) {
     this._map = this._map.merge(position.y, map, function(val1, val2) {
       return val1.merge(position.x, val2, (val1, val2)=> val1 - val2);
     });
@@ -40,13 +40,13 @@ export default class PutMap {
    * @param  {[type]} postion [description]
    * @param  {[type]} piece   [description]
    */
-  checkAndAdd(postion, piece) {
-    if(this.isOverBeyondMap(postion, piece._map))
+  checkAndAdd(piece, postion) {
+    if(this.isOverBeyondMap(piece._map, postion))
       console.warn('over beyond the map!');
-    else if(this.isAlreadyExist(postion, piece._map))
+    else if(this.isAlreadyExist(piece._map, postion))
       console.warn('is already exist!');
     else
-      this.add(postion, piece._map);
+      this.add(piece._map, postion);
   }
 
   isFull(arr, y) {
@@ -74,7 +74,7 @@ export default class PutMap {
    * @param  {[type]} map     [description]
    * @return {[type]}         [description]
    */
-  isOverBeyondMap(position, map) {
+  isOverBeyondMap(map, position) {
     return this._map.length < position.y + map.length || this._map.some((a, i)=> {
       return map[i-position.y] && a.length < position.x + map[i-position.y].length;
     });
@@ -86,9 +86,9 @@ export default class PutMap {
    * @param  {[type]}  map      [description]
    * @return {Boolean}          [description]
    */
-  isAlreadyExist(position, map) {
+  isAlreadyExist(map, position) {
     return this._map.some((a, y)=> {
-      return a.some((val, x)=> map[y-position.y] && map[y-position.y][x-position.x] && val + map[y-position.y][x-position.x] > 1);
+      return a.some((v, x)=> map[y-position.y] && map[y-position.y][x-position.x] && v + map[y-position.y][x-position.x] > 1);
     });
   }
 }

@@ -13,7 +13,8 @@ import PieceProvider from './object/PieceProvider';
     console.log(postion);
     console.log(piece._map.stringify());
     console.log(map._map.stringify());
-    map.checkAndAdd(postion, piece);
+    map.checkAndAdd(piece, postion);
+    map.subtract(map.getMapFiliteringByFull());
   }
 
   console.log(map._map.stringify());
