@@ -26,8 +26,17 @@ Array.prototype.merge = function(X, arr, fn = function(val1, val2) { return val2
   return newArr;
 };
 
+/**
+ * 縦軸と横軸入れ替える
+ * `左上と右下を結ぶ`軸で入れ替えるのであらゆる面で都合が良い
+ * @return {[type]}
+ */
+Array.prototype.transpose = function() {
+  return this[0].map((_, c) => this.map(r => r[c]));
+}
+
 Array.prototype.stringify = function(strName) {
-  var str = '';
+  var str = '\n';
   this.map((arr)=> {
     str += JSON.stringify(arr) + "\n";
   });

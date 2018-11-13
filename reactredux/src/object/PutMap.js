@@ -19,14 +19,20 @@ export default class PutMap {
    * @param {object}
    * @param {object}
    */
-  add(position, piece) {
-    this._map = this._map.merge(position.y, piece._map, function(val1, val2) {
+  add(position, map) {
+    this._map = this._map.merge(position.y, map, function(val1, val2) {
       return val1.merge(position.x, val2, (val1, val2)=> val1 + val2);
     });
     // or
-    // piece._map().map((arrOfX)=> {
+    // map().map((arrOfX)=> {
     //   this._map[y][x]++;
     // });
+  }
+
+  subtract(position, map) {
+    this._map = this._map.merge(position.y, map, function(val1, val2) {
+      return val1.merge(position.x, val2, (val1, val2)=> val1 - val2);
+    });
   }
 
   /**
@@ -35,55 +41,54 @@ export default class PutMap {
    * @param  {[type]} piece   [description]
    */
   checkAndAdd(postion, piece) {
-    if(this.isOverBeyondMap(postion, piece))
+    if(this.isOverBeyondMap(postion, piece._map))
       console.warn('over beyond the map!');
-    else if(this.isAlreadyExist(postion, piece))
+    else if(this.isAlreadyExist(postion, piece._map))
       console.warn('is already exist!');
     else
-      this.add(postion, piece);
+      this.add(postion, piece._map);
+  }
+
+  isFull(arr, y) {
+    return arr[y].reduce((v1, v2) => v1 += v2) === arr[y].length;
   }
 
   /**
-   * [hasFullsOnHorizontal description]
-   * @return {Array} - xxxxxxxxxxxxx: return fullになってる行のindexらを配列で返す
+   * 新しくmapを取得する
+   * - fullの行、列は1で埋められており、それ以外は0にしたmapである
+   * - fullの行、列かどうかは現在のmapを参考にしている
+   * @return {[type]}
    */
-  hasFullsOnHorizontal() {
-    return this._map.map?some?filter?((mapX, y)=> {
-      return mapX.reduce((v1, v2) => v1 += v2) === mapX.length;
-    });
-  }
-
-  /**
-   * [hasFullsOnVertical description]
-   * @return {Array} - xxxxxxxxxxxxx: return fullになってる列のindexらを配列で返す
-   */
-  hasFullsOnVertical() {
-
+  getMapFiliteringByFull() {
+    return new PutMap()._map.map((a, y)=> {
+      return this.isFull(this._map, y) ? a.map((v, x)=> Math.min(1, ++v)) : a;
+    })
+    .transpose().map((a, y)=> {
+      return this.isFull(this._map.transpose(), y) ? a.map((v, x)=> Math.min(1, ++v)) : a;
+    }).transpose();
   }
 
   /**
    * [isOverBeyondMap description]
    * @param  {[type]} postion [description]
-   * @param  {[type]} piece   [description]
+   * @param  {[type]} map     [description]
    * @return {[type]}         [description]
    */
-  isOverBeyondMap(position, piece) {
-    return this._map.length < position.y + piece._map.length || this._map.some((mapX, i)=> {
-      return piece._map[i-position.y] && mapX.length < position.x + piece._map[i-position.y].length;
+  isOverBeyondMap(position, map) {
+    return this._map.length < position.y + map.length || this._map.some((a, i)=> {
+      return map[i-position.y] && a.length < position.x + map[i-position.y].length;
     });
   }
 
   /**
    * [isAlreadyExist description]
    * @param  {[type]}  position [description]
-   * @param  {[type]}  piece    [description]
+   * @param  {[type]}  map      [description]
    * @return {Boolean}          [description]
    */
-  isAlreadyExist(position, piece) {
-    return this._map.some((mapX, y)=> {
-      return mapX.some((val, x)=> {
-        return piece._map[y-position.y] && piece._map[y-position.y][x-position.x] && val + piece._map[y-position.y][x-position.x] > 1;
-      });
+  isAlreadyExist(position, map) {
+    return this._map.some((a, y)=> {
+      return a.some((val, x)=> map[y-position.y] && map[y-position.y][x-position.x] && val + map[y-position.y][x-position.x] > 1);
     });
   }
 }

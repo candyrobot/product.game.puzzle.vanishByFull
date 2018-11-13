@@ -7,7 +7,7 @@ import PieceProvider from './object/PieceProvider';
   var map = new PutMap();
   window.map = map;
 
-  for(var i=0; i<100; i++) {
+  for(var i=0; i<1000; i++) {
     var postion = { x: Math.round(Math.random() * 10), y: Math.round(Math.random() * 10) };
     piece = pieceProvider.random();
     console.log(postion);
