@@ -44,6 +44,24 @@ export default class PutMap {
   }
 
   /**
+   * [hasFullsOnHorizontal description]
+   * @return {Array} - xxxxxxxxxxxxx: return fullになってる行のindexらを配列で返す
+   */
+  hasFullsOnHorizontal() {
+    return this._map.map?some?filter?((mapX, y)=> {
+      return mapX.reduce((v1, v2) => v1 += v2) === mapX.length;
+    });
+  }
+
+  /**
+   * [hasFullsOnVertical description]
+   * @return {Array} - xxxxxxxxxxxxx: return fullになってる列のindexらを配列で返す
+   */
+  hasFullsOnVertical() {
+
+  }
+
+  /**
    * [isOverBeyondMap description]
    * @param  {[type]} postion [description]
    * @param  {[type]} piece   [description]
