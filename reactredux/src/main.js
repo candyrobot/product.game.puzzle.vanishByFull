@@ -4,7 +4,7 @@ import PieceProvider from './object/PieceProvider';
 (function main() {
   const pieceProvider = new PieceProvider();
   var piece = pieceProvider.random();
-  var postion = { x: 1, y: 1 };
+  var postion = { x: 7, y: 7 };
   var map = new PutMap();
   window.map = map;
 
