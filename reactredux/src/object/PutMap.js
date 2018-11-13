@@ -29,6 +29,24 @@ export default class PutMap {
     // });
   }
 
+  /**
+   * [checkAndAdd description]
+   * @param  {[type]} postion [description]
+   * @param  {[type]} piece   [description]
+   */
+  checkAndAdd(postion, piece) {
+    if(this.isOverBeyondMap(postion, piece))
+      console.warn('over beyond the map!');
+    else
+      this.add(postion, piece);
+  }
+
+  /**
+   * [isOverBeyondMap description]
+   * @param  {[type]} postion [description]
+   * @param  {[type]} piece   [description]
+   * @return {[type]}         [description]
+   */
   isOverBeyondMap(position, piece) {
     return this._map.length < position.y + piece._map.length || this._map.some((mapX, i)=> {
       return piece._map[i-position.y] && mapX.length < position.x + piece._map[i-position.y].length;

@@ -26,11 +26,11 @@ Array.prototype.merge = function(X, arr, fn = function(val1, val2) { return val2
   return newArr;
 };
 
-Array.prototype.log = function(strName) {
-  var str = strName + '\n';
+Array.prototype.stringify = function(strName) {
+  var str = '';
   this.map((arr)=> {
     str += JSON.stringify(arr) + "\n";
   });
-  console.log(str);
+  return str;
 };
 

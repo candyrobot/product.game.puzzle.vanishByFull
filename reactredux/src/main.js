@@ -3,19 +3,27 @@ import PutMap from './object/PutMap';
 import PieceProvider from './object/PieceProvider';
 (function main() {
   const pieceProvider = new PieceProvider();
-  var piece = pieceProvider.random();
+  var piece = null;
   var postion = { x: 7, y: 7 };
   var map = new PutMap();
   window.map = map;
 
+
+  piece = pieceProvider.random();
   console.log(postion);
-  piece._map.log('piece'); // こっちの書き方も好き: `console.log(piece._map.stringify());`
-  map._map.log('map'); // こっちの書き方も好き: `console.log(map._map.stringify());`
+  console.log(piece._map.stringify());
+  console.log(map._map.stringify());
+  map.checkAndAdd(postion, piece);
+  piece = pieceProvider.random();
+  console.log(postion);
+  console.log(piece._map.stringify());
+  console.log(map._map.stringify());
+  map.checkAndAdd(postion, piece);
+  piece = pieceProvider.random();
+  console.log(postion);
+  console.log(piece._map.stringify());
+  console.log(map._map.stringify());
+  map.checkAndAdd(postion, piece);
 
-  if(map.isOverBeyondMap(postion, piece))
-    console.log('over beyond the map!');
-  else
-    map.add(postion, piece);
-
-  map._map.log('map');
+  console.log(map._map.stringify());
 })();
