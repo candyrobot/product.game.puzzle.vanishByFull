@@ -27,12 +27,14 @@ export default class PutMap {
     // map().map((arrOfX)=> {
     //   this._map[y][x]++;
     // });
+    return this._map;
   }
 
   subtract(map, position = { x:0, y:0 }) {
     this._map = this._map.merge(position.y, map, function(val1, val2) {
       return val1.merge(position.x, val2, (val1, val2)=> val1 - val2);
     });
+    return this._map;
   }
 
   /**

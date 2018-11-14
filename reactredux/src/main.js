@@ -14,7 +14,8 @@ import PieceProvider from './object/PieceProvider';
     console.log(piece._map.stringify());
     console.log(map._map.stringify());
     map.checkAndAdd(piece, postion);
-    map.subtract(map.getMapFiliteringByFull());
+    // map.subtract(map.getMapFiliteringByFull());
+    // window.gameArea.setState({ map: map.subtract(map.getMapFiliteringByFull()) } );
   }
 
   console.log(map._map.stringify());
