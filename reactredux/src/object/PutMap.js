@@ -107,4 +107,8 @@ export default class PutMap {
       return a.some((v, x)=> map[y-position.y] && map[y-position.y][x-position.x] && v + map[y-position.y][x-position.x] > 1);
     });
   }
+
+  getMap() {
+    return this._map;
+  }
 }

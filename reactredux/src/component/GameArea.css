@@ -1,0 +1,25 @@
+.GameArea {
+    background-color: #282c34;
+    color: white;
+}
+
+.GameArea table {
+  margin: auto;
+}
+
+.GameArea-putMap td {
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+}
+
+.GameArea-pieceArea {
+  width: 200px;
+}
+
+.GameArea-pieceArea td {
+  width: 30%;
+  height: 0px;
+  padding-top: 30%;
+  border: 1px solid white;
+}
