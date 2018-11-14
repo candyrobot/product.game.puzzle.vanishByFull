@@ -37,16 +37,32 @@ export default class PutMap {
 
   /**
    * [checkAndAdd description]
-   * @param  {[type]} postion [description]
-   * @param  {[type]} piece   [description]
+   * @param  {[type]} position [description]
+   * @param  {[type]} piece    [description]
    */
-  checkAndAdd(piece, postion) {
-    if(this.isOverBeyondMap(piece._map, postion))
+  checkAndAdd(piece, position) {
+    if(this.isOverBeyondMap(piece._map, position))
       console.warn('over beyond the map!');
-    else if(this.isAlreadyExist(piece._map, postion))
+    else if(this.isAlreadyExist(piece._map, position))
       console.warn('is already exist!');
     else
-      this.add(piece._map, postion);
+      this.add(piece._map, position);
+  }
+
+  /**
+   * 配置可能な場所`position`を配列で返す
+   * @return {Array}
+   */
+  getPutablePositions(map) {
+    var positions = [];
+    this._map.forEach((a, y)=> {
+      a.forEach((v, x)=> {
+        !this.isOverBeyondMap(map, { x:x, y:y }) &&
+        !this.isAlreadyExist(map, { x:x, y:y }) &&
+        positions.push({ x:x, y:y });
+      });
+    });
+    return positions;
   }
 
   isFull(arr, y) {
