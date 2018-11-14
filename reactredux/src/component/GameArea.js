@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import './GameArea.css';
+import Map from './Map';
+
+import '../object/Array';
+import PutMap from '../object/PutMap';
+import PieceProvider from '../object/PieceProvider';
 
 class GameArea extends Component {
   constructor(props) {
     super(props);
-    this.state = { map: window.map.getMap() };
+    this.state = { putMap: new PutMap() };
     window.gameArea = this;
+
+    // INFO: stateに持たせないやり方もできる。ただしsetStateで気づかないはず
+    this.pieceProvider = new PieceProvider();
   }
 
   render() {
@@ -13,31 +21,13 @@ class GameArea extends Component {
       <div className="GameArea">
         <h1>Puzzle - Vanish By Full</h1>
         <div className="GameArea-putMap">
-          <table>
-            <tbody>
-              {this.state.map.map((a, y) => {
-                return <tr key={y}>
-                  {a.map((v, x)=> {
-                    return <td key={x}
-                      data-x={x}
-                      data-y={y}
-                      data-has={this.state.map[y][x]}></td>
-                  })}
-                </tr>;
-              })}
-             </tbody>
-          </table>
-          <div className=""></div>
+          <Map map={this.state.putMap.getMap()} />
         </div>
-        <table className="GameArea-pieceArea">
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="GameArea-pieceArea">
+          <div className="pieceArea"><Map map={this.pieceProvider.random()._map} /></div>
+          <div className="pieceArea"><Map map={this.pieceProvider.random()._map} /></div>
+          <div className="pieceArea"><Map map={this.pieceProvider.random()._map} /></div>
+        </div>
       </div>
     );
   }
