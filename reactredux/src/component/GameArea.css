@@ -31,6 +31,10 @@
   line-height: 150px;
 }
 
+.GameArea-pieceArea .pieceArea[data-is_selecting="true"] {
+  border: 1px solid yellow;
+}
+
 .GameArea-pieceArea .pieceArea td {
   box-shadow: initial;
   border: 1px solid #282c34;

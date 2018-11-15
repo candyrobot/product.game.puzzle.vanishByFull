@@ -22,8 +22,8 @@ class GameArea extends Component {
         <div className="GameArea-putMap">
           <Map
             map={this.state.map}
-            click={(position)=> {
-              gm.add(0, position);
+            doWhenClick={(position)=> {
+              gm.add(position);
               this.setState({
                 map: gm.dumpMap(),
                 pieces: gm.dumpPieces(),
@@ -33,7 +33,13 @@ class GameArea extends Component {
         </div>
         <div className="GameArea-pieceArea">
           {this.state.pieces.map((v, i)=> {
-            return <div key={i} className="pieceArea">{v && <Map map={v._map} />}</div>
+            return <div key={i}
+              onClick={()=> {
+                gm.select(i);
+                this.setState({});
+              }}
+              data-is_selecting={i===gm.selectingIndex}
+              className="pieceArea">{v && <Map map={v._map} />}</div>
           })}
         </div>
       </div>

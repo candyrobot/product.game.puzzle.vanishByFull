@@ -5,6 +5,7 @@ import StockMaster from '../object/StockMaster';
 
 export default class GameMaster {
   constructor(option = {}) {
+    this.selectingIndex = undefined;
     this.putMap = new PutMap();
     this.pieceProvider = new PieceProvider();
     this.stockMaster = new StockMaster(
@@ -21,16 +22,22 @@ export default class GameMaster {
     return this.stockMaster.getAll();
   }
 
-  add(indexOfPiece, position) {
-    var piece = this.stockMaster.get(indexOfPiece);
+  select(i) {
+    this.selectingIndex = i;
+  }
+
+  add(position) {
+    var piece = this.stockMaster.get(this.selectingIndex);
     if(this.putMap.isOverBeyondMap(piece._map, position))
       console.warn('over beyond the map!');
     else if(this.putMap.isAlreadyExist(piece._map, position))
       console.warn('is already exist!');
     else {
-      this.stockMaster.remove(indexOfPiece);
+      this.stockMaster.remove(this.selectingIndex);
       this.putMap.add(piece._map, position);
     }
+    if(this.stockMaster.getAll().filter((v)=> v===undefined).length === this.stockMaster.getAll().length)
+      this.stockMaster.fillBy(()=> this.pieceProvider.random());
   }
 
   demo() {
