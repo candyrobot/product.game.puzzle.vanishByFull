@@ -16,6 +16,7 @@ export default class PutMap {
   }
 
   /**
+   * 加算する
    * @param {object}
    * @param {object}
    */
@@ -30,6 +31,12 @@ export default class PutMap {
     return this._map;
   }
 
+  /**
+   * 減算する
+   * @param  {[type]} map      [description]
+   * @param  {Object} position [description]
+   * @return {[type]}          [description]
+   */
   subtract(map, position = { x:0, y:0 }) {
     this._map = this._map.merge(position.y, map, function(val1, val2) {
       return val1.merge(position.x, val2, (val1, val2)=> val1 - val2);
@@ -72,9 +79,12 @@ export default class PutMap {
   }
 
   /**
-   * 新しくmapを取得する
+   * 次の特徴を備えたmapを新しく取得する
    * - fullの行、列は1で埋められており、それ以外は0にしたmapである
    * - fullの行、列かどうかは現在のmapを参考にしている
+   * 用途
+   * - fullの箇所が特定できる
+   * - マスク（減算）させるために使う
    * @return {[type]}
    */
   getMapFiliteringByFull() {
