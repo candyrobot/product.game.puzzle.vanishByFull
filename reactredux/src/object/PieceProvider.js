@@ -3,21 +3,18 @@ export default class PieceProvider {
   constructor() {
     this._pieces = [
       {
-        show: this.show,
         _map:
         [
           [1],
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1],
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1],
@@ -25,7 +22,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1],
@@ -33,7 +29,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1],
@@ -41,7 +36,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [0,1],
@@ -49,7 +43,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,0],
@@ -57,7 +50,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1],
@@ -65,14 +57,12 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1],
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1],
@@ -81,7 +71,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1],
@@ -90,7 +79,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1],
@@ -99,7 +87,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [0,0,1],
@@ -108,7 +95,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,0,0],
@@ -117,7 +103,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1],
@@ -126,14 +111,12 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1],
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1],
@@ -143,7 +126,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1],
@@ -153,7 +135,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1],
@@ -163,7 +144,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [0,0,0,1],
@@ -173,7 +153,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,0,0,0],
@@ -183,7 +162,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1],
@@ -193,14 +171,12 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1,1],
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1],
@@ -211,7 +187,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1,1],
@@ -222,7 +197,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,1,1,1,1],
@@ -233,7 +207,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [0,0,0,0,1],
@@ -244,7 +217,6 @@ export default class PieceProvider {
         ]
       },
       {
-        show: this.show,
         _map:
         [
           [1,0,0,0,0],

@@ -5,6 +5,7 @@ import Map from './Map';
 import '../object/Array';
 import PutMap from '../object/PutMap';
 import PieceProvider from '../object/PieceProvider';
+import PieceStocker from '../object/PieceStocker';
 
 class GameArea extends Component {
   constructor(props) {
@@ -13,13 +14,14 @@ class GameArea extends Component {
     // INFO: stateに持たせないやり方もできる。ただしsetStateで気づかないはず
     this.pieceProvider = new PieceProvider();
 
+    var putMap = new PutMap();
+
+    var pieceStocker = new PieceStocker(3);
+    pieceStocker.fill(()=> this.pieceProvider.random());
+
     this.state = {
-      putMap: new PutMap(),
-      pieceStockers: [
-        this.pieceProvider.random(),
-        this.pieceProvider.random(),
-        this.pieceProvider.random(),
-      ],
+      putMap: putMap,
+      pieceStocker: pieceStocker,
     };
   }
 
@@ -31,20 +33,28 @@ class GameArea extends Component {
           <Map
             map={this.state.putMap.getMap()}
             click={(position)=> {
-              var map = this.state.pieceStockers.pop()._map;
-              this.state.pieceStockers.push(this.pieceProvider.random());
-              this.state.putMap.checkAndAdd(map, position);
+
+              var map = this.state.pieceStocker.get(0)._map;
+              if(this.state.putMap.isOverBeyondMap(map, position))
+                console.warn('over beyond the map!');
+              else if(this.state.putMap.isAlreadyExist(map, position))
+                console.warn('is already exist!');
+              else {
+                this.state.pieceStocker.remove(0);
+                this.state.putMap.add(map, position);
+              }
+
               this.setState({
                 putMap: this.state.putMap,
-                pieceStockers: this.state.pieceStockers
+                pieceStocker: this.state.pieceStocker
               });
             }}
             />
         </div>
         <div className="GameArea-pieceArea">
-          <div className="pieceArea"><Map map={this.state.pieceStockers[0]._map} /></div>
-          <div className="pieceArea"><Map map={this.state.pieceStockers[1]._map} /></div>
-          <div className="pieceArea"><Map map={this.state.pieceStockers[2]._map} /></div>
+          {this.state.pieceStocker.getAll().map((v, i)=> {
+            return <div key={i} className="pieceArea">{v && <Map map={v._map} />}</div>
+          })}
         </div>
       </div>
     );
