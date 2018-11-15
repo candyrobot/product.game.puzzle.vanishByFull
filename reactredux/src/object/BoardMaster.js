@@ -1,4 +1,4 @@
-export default class PutMap {
+export default class BoardMaster {
   /**
    * [constructor description]
    * @param  {Array} - [{int} width, {int} height]
@@ -102,7 +102,7 @@ export default class PutMap {
    * @return {[type]}
    */
   getMapFiliteringByFull() {
-    return new PutMap(this.mapSizes)._map.map((a, y)=> {
+    return new BoardMaster(this.mapSizes)._map.map((a, y)=> {
       return this.isFull(this._map, y) ? a.map((v, x)=> Math.min(1, ++v)) : a;
     })
     .transpose().map((a, y)=> {

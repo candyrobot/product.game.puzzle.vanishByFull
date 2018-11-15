@@ -1,12 +1,12 @@
 import './Array';
-import PutMap from './PutMap';
+import BoardMaster from './BoardMaster';
 import PieceProvider from './PieceProvider';
 import StockMaster from './StockMaster';
 
 export default class GameMaster {
   constructor(option = {}) {
     this.selectingIndex = undefined;
-    this.putMap = new PutMap([10,10]);
+    this.boardMaster = new BoardMaster([10,10]);
     this.pieceProvider = new PieceProvider();
     this.stockMaster = new StockMaster(
       option.numberOfPieceStocker === undefined ? 3 : option.numberOfPieceStocker,
@@ -15,7 +15,7 @@ export default class GameMaster {
   }
 
   dumpMap() {
-    return this.putMap.getMap();
+    return this.boardMaster.getMap();
   }
 
   dumpPieces() {
@@ -29,19 +29,19 @@ export default class GameMaster {
   add(position) {
     var piece = this.stockMaster.get(this.selectingIndex);
 
-    if(this.putMap.isOverBeyondMap(piece._map, position))
+    if(this.boardMaster.isOverBeyondMap(piece._map, position))
       return console.warn('over beyond the map!');
 
-    if(this.putMap.isAlreadyExist(piece._map, position))
+    if(this.boardMaster.isAlreadyExist(piece._map, position))
       return console.warn('is already exist!');
 
     this.stockMaster.remove(this.selectingIndex);
-    this.putMap.add(piece._map, position);
+    this.boardMaster.add(piece._map, position);
 
     if(this.stockMaster.getAll().filter((v)=> v===undefined).length === this.stockMaster.getAll().length)
       this.stockMaster.fillBy(()=> this.pieceProvider.random());
 
-    this.putMap.subtract(this.putMap.getMapFiliteringByFull());
+    this.boardMaster.subtract(this.boardMaster.getMapFiliteringByFull());
   }
 
   demo() {
@@ -50,11 +50,11 @@ export default class GameMaster {
       var piece = this.pieceProvider.random();
       console.log(postion);
       console.log(piece._map.stringify());
-      console.log(this.putMap._map.stringify());
-      this.putMap.checkAndAdd(piece._map, postion);
-      // this.putMap.subtract(this.putMap.getMapFiliteringByFull());
+      console.log(this.boardMaster._map.stringify());
+      this.boardMaster.checkAndAdd(piece._map, postion);
+      // this.boardMaster.subtract(this.boardMaster.getMapFiliteringByFull());
     }
-    console.log(this.putMap._map.stringify());
+    console.log(this.boardMaster._map.stringify());
   }
 
 }
