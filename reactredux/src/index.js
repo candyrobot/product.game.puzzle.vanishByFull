@@ -4,9 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 // INFO: original logics
-import './main';
+// import './demo';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

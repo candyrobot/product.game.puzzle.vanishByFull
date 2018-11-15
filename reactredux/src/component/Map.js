@@ -14,6 +14,7 @@ class Map extends Component {
             return <tr key={y}>
               {a.map((v, x)=> {
                 return <td key={x}
+                  onClick={()=> this.props.click({ x:x, y:y })}
                   data-x={x}
                   data-y={y}
                   data-has={this.props.map[y][x]}></td>

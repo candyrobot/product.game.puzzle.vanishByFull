@@ -47,15 +47,15 @@ export default class PutMap {
   /**
    * [checkAndAdd description]
    * @param  {[type]} position [description]
-   * @param  {[type]} piece    [description]
+   * @param  {[type]} map      [description]
    */
-  checkAndAdd(piece, position) {
-    if(this.isOverBeyondMap(piece._map, position))
+  checkAndAdd(map, position) {
+    if(this.isOverBeyondMap(map, position))
       console.warn('over beyond the map!');
-    else if(this.isAlreadyExist(piece._map, position))
+    else if(this.isAlreadyExist(map, position))
       console.warn('is already exist!');
     else
-      this.add(piece._map, position);
+      this.add(map, position);
   }
 
   /**
