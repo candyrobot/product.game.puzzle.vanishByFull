@@ -1,18 +1,32 @@
 export default class PutMap {
-  constructor() {
-    this._map =
-    [
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-    ];
+  /**
+   * [constructor description]
+   * @param  {Array} - [{int} width, {int} height]
+   * @return {[type]}     [description]
+   */
+  constructor(mapSizes) {
+    this.mapSizes = mapSizes;
+    this._map = [];
+    for (var x=0; x<mapSizes[0]; x++) {
+      this._map[x] = [];
+      for (var y=0; y<mapSizes[1]; y++) {
+        this._map[x][y] = 0;
+      }
+    }
+    this._map = this._map.transpose();
+    // this._map =
+    // [
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    //   [0,0,0,0,0,0,0,0,0,0],
+    // ];
   }
 
   /**
@@ -88,7 +102,7 @@ export default class PutMap {
    * @return {[type]}
    */
   getMapFiliteringByFull() {
-    return new PutMap()._map.map((a, y)=> {
+    return new PutMap(this.mapSizes)._map.map((a, y)=> {
       return this.isFull(this._map, y) ? a.map((v, x)=> Math.min(1, ++v)) : a;
     })
     .transpose().map((a, y)=> {

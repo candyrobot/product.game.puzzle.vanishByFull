@@ -1,12 +1,12 @@
-import '../object/Array';
-import PutMap from '../object/PutMap';
-import PieceProvider from '../object/PieceProvider';
-import StockMaster from '../object/StockMaster';
+import './Array';
+import PutMap from './PutMap';
+import PieceProvider from './PieceProvider';
+import StockMaster from './StockMaster';
 
 export default class GameMaster {
   constructor(option = {}) {
     this.selectingIndex = undefined;
-    this.putMap = new PutMap();
+    this.putMap = new PutMap([10,10]);
     this.pieceProvider = new PieceProvider();
     this.stockMaster = new StockMaster(
       option.numberOfPieceStocker === undefined ? 3 : option.numberOfPieceStocker,
