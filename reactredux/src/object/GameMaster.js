@@ -28,16 +28,20 @@ export default class GameMaster {
 
   add(position) {
     var piece = this.stockMaster.get(this.selectingIndex);
+
     if(this.putMap.isOverBeyondMap(piece._map, position))
-      console.warn('over beyond the map!');
-    else if(this.putMap.isAlreadyExist(piece._map, position))
-      console.warn('is already exist!');
-    else {
-      this.stockMaster.remove(this.selectingIndex);
-      this.putMap.add(piece._map, position);
-    }
+      return console.warn('over beyond the map!');
+
+    if(this.putMap.isAlreadyExist(piece._map, position))
+      return console.warn('is already exist!');
+
+    this.stockMaster.remove(this.selectingIndex);
+    this.putMap.add(piece._map, position);
+
     if(this.stockMaster.getAll().filter((v)=> v===undefined).length === this.stockMaster.getAll().length)
       this.stockMaster.fillBy(()=> this.pieceProvider.random());
+
+    this.putMap.subtract(this.putMap.getMapFiliteringByFull());
   }
 
   demo() {
