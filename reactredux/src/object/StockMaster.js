@@ -1,12 +1,13 @@
-export default class PieceStocker {
-  constructor(number) {
+export default class StockMaster {
+  constructor(number, createPiece) {
     this.pieces = [];
     for (var i=0; i<number; i++) {
       this.pieces.push(undefined);
     }
+    this.fillBy(createPiece);
   }
 
-  fill(createPiece) {
+  fillBy(createPiece) {
     this.pieces = this.pieces.map((v)=> v === undefined && createPiece());
   }
 

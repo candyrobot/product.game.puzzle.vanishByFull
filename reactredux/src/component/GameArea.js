@@ -2,26 +2,16 @@ import React, { Component } from 'react';
 import './GameArea.css';
 import Map from './Map';
 
-import '../object/Array';
-import PutMap from '../object/PutMap';
-import PieceProvider from '../object/PieceProvider';
-import PieceStocker from '../object/PieceStocker';
+// INFO: game logics.
+import GameMaster from '../object/GameMaster';
+const gm = new GameMaster();
 
 class GameArea extends Component {
   constructor(props) {
     super(props);
-
-    // INFO: stateに持たせないやり方もできる。ただしsetStateで気づかないはず
-    this.pieceProvider = new PieceProvider();
-
-    var putMap = new PutMap();
-
-    var pieceStocker = new PieceStocker(3);
-    pieceStocker.fill(()=> this.pieceProvider.random());
-
     this.state = {
-      putMap: putMap,
-      pieceStocker: pieceStocker,
+      map: gm.dumpMap(),
+      pieces: gm.dumpPieces(),
     };
   }
 
@@ -31,28 +21,18 @@ class GameArea extends Component {
         <h1>Puzzle - Vanish By Full</h1>
         <div className="GameArea-putMap">
           <Map
-            map={this.state.putMap.getMap()}
+            map={this.state.map}
             click={(position)=> {
-
-              var map = this.state.pieceStocker.get(0)._map;
-              if(this.state.putMap.isOverBeyondMap(map, position))
-                console.warn('over beyond the map!');
-              else if(this.state.putMap.isAlreadyExist(map, position))
-                console.warn('is already exist!');
-              else {
-                this.state.pieceStocker.remove(0);
-                this.state.putMap.add(map, position);
-              }
-
+              gm.add(0, position);
               this.setState({
-                putMap: this.state.putMap,
-                pieceStocker: this.state.pieceStocker
+                map: gm.dumpMap(),
+                pieces: gm.dumpPieces(),
               });
             }}
             />
         </div>
         <div className="GameArea-pieceArea">
-          {this.state.pieceStocker.getAll().map((v, i)=> {
+          {this.state.pieces.map((v, i)=> {
             return <div key={i} className="pieceArea">{v && <Map map={v._map} />}</div>
           })}
         </div>
